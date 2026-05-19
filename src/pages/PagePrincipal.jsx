@@ -10,6 +10,9 @@ import {
 } from "lucide-react";
 import firstPhoto from "../assets/firstPhoto.jpeg";
 import ecaa from "../assets/ecaa.jpeg";
+import fofoo from "../assets/fofoo.png";
+import dead1 from "../assets/deadburguer1.png";
+import dead2 from "../assets/deadburguer2.png";
 
 const START_DATE = new Date("2025-11-07T00:00:00");
 
@@ -71,6 +74,18 @@ const FOTOS_INICIAIS = [
   {
     src: ecaa,
     legenda: "Que nojo😝kkkk",
+  },
+  {
+    src: fofoo,
+    legenda: "❤️😏",
+  },
+  {
+    src: dead1,
+    legenda: "👹",
+  },
+  {
+    src: dead2,
+    legenda: "🤡😜",
   },
 ];
 
@@ -285,7 +300,7 @@ export default function HomePage() {
             Eu gosto muito de voce, e odeio isso, porque fico com ciumes, e
             acabo ficando triste com certas coisas, e tenho medo do que pode
             acontecer, adoro ser idiota e te irritar, e como voce nao percebeu
-            ate agora, adoro ficar agarrado com vc ❤️
+            ate agora, adoro ficar agarrado com vc, Te amo❤️
           </p>
         </div>
 
