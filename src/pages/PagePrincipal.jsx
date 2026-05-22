@@ -48,6 +48,14 @@ const GOSTOS_DELA = [
   "O jeito unico dela ser",
 ];
 
+const COISAS_QUE_ELA_GOSTA_DE_FAZER = [
+  "Ficar comigo",
+  "Me irritar do nada",
+  "Mandar mensagem quando sente saudade",
+  "Ficar agarradinha",
+  "Rir das nossas besteiras",
+];
+
 function calcularTempo() {
   const agora = new Date();
   const diff = agora - START_DATE;
@@ -106,6 +114,7 @@ export default function PagePrincipal() {
   const musicaRef = useRef(null);
   const textoRef = useRef(null);
   const gostosRef = useRef(null);
+  const fazeresRef = useRef(null);
   const momentosRef = useRef(null);
 
   useEffect(() => {
@@ -390,14 +399,58 @@ export default function PagePrincipal() {
               {secaoLiberada < 5 && (
                 <HeartGate
                   coracoesSoltos={coracoesSoltos}
-                  label="Abrir momentos"
-                  onClick={() => liberarProximaSecao(5, momentosRef)}
+                  label="O que ela faz"
+                  onClick={() => liberarProximaSecao(5, fazeresRef)}
                 />
               )}
             </>
           )}
 
           {secaoLiberada >= 5 && (
+            <>
+              <section
+                ref={fazeresRef}
+                className="w-full max-w-sm rounded-3xl px-6 py-8 mb-12 reveal-section"
+                style={{
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,100,150,0.2)",
+                  boxShadow: "0 12px 30px rgba(255, 40, 150, 0.12)",
+                }}
+              >
+                <div className="flex items-center justify-center gap-2 text-pink-400 font-bold mb-5">
+                  <Heart className="w-4 h-4 fill-pink-400" />
+                  <h2 className="text-center text-white font-serif text-3xl">
+                    Coisas que ela gosta de fazer
+                  </h2>
+                  <Heart className="w-4 h-4 fill-pink-400" />
+                </div>
+
+                <ol className="space-y-3">
+                  {COISAS_QUE_ELA_GOSTA_DE_FAZER.map((coisa, indice) => (
+                    <li
+                      key={coisa}
+                      className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-pink-100"
+                    >
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pink-500/20 text-sm font-bold text-pink-300">
+                        {indice + 1}
+                      </span>
+                      <span className="text-base leading-5">{coisa}</span>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+
+              {secaoLiberada < 6 && (
+                <HeartGate
+                  coracoesSoltos={coracoesSoltos}
+                  label="Abrir momentos"
+                  onClick={() => liberarProximaSecao(6, momentosRef)}
+                />
+              )}
+            </>
+          )}
+
+          {secaoLiberada >= 6 && (
             <section
               ref={momentosRef}
               className="w-full max-w-sm mb-16 reveal-section"
