@@ -41,11 +41,11 @@ const FOTOS_INICIAIS = [
 ];
 
 const GOSTOS_DELA = [
-  "O jeito dela sorrir",
-  "A forma como ela me irrita",
-  "Quando ela fica toda fofa",
-  "O carinho dela comigo",
-  "O jeito unico dela ser",
+  "O seu soriso",
+  "Sua carinha de brava",
+  "Quando você acaba de acordar",
+  "O seu cabelo bagunçado",
+  "Seu pescoço 😏",
 ];
 
 const COISAS_QUE_ELA_GOSTA_DE_FAZER = [
@@ -53,7 +53,14 @@ const COISAS_QUE_ELA_GOSTA_DE_FAZER = [
   "Me irritar do nada",
   "Mandar mensagem quando sente saudade",
   "Ficar agarradinha",
-  "Rir das nossas besteiras",
+  "Sair",
+  "Dormir",
+  "Comer hamburguer",
+  "Cheedar",
+  "Dançar",
+  "Conversar",
+  "Saber da minha vida",
+  "fofocar",
 ];
 
 function calcularTempo() {
@@ -345,10 +352,9 @@ export default function PagePrincipal() {
                 }}
               >
                 <p className="text-center text-pink-100/90 italic leading-relaxed text-2xl">
-                  Eu gosto muito de voce, e odeio isso, porque fico com ciumes,
-                  e acabo ficando triste com certas coisas, e tenho medo do que
-                  pode acontecer, adoro ser idiota e te irritar, e como voce nao
-                  percebeu ate agora, adoro ficar agarrado com vc, Te amo❤️
+                  Eu adoro seu jeitinho de maluca, seu lado toxico, quando voce fica toda fofa, quando voce fica toda grudenta, adoro quando voce fica com ciúmes,
+                   adoro ser idiota e te irritar, e como voce nao
+                  percebeu ate agora, adoro ficar agarrado com vc, E me desculpa por todas as vezes que ja te chatei, e mesmo você não gostando das minhas desculpas vou continuar pedindo porque isso é meu jeito de mostrar que me importo com você.<br/>Eu te amo❤️
                 </p>
               </div>
 
@@ -376,7 +382,7 @@ export default function PagePrincipal() {
                 <div className="flex items-center justify-center gap-2 text-pink-400 font-bold mb-5">
                   <Heart className="w-4 h-4 fill-pink-400" />
                   <h2 className="text-center text-white font-serif text-3xl">
-                    Gostos dela
+                    O que eu mais amo em você
                   </h2>
                   <Heart className="w-4 h-4 fill-pink-400" />
                 </div>
