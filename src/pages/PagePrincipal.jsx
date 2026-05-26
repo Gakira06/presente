@@ -7,6 +7,7 @@ import {
   Images,
   Music,
   Play,
+  Sparkles,
 } from "lucide-react";
 import firstPhoto from "../assets/firstPhoto.jpeg";
 import ecaa from "../assets/ecaa.jpeg";
@@ -61,6 +62,17 @@ const COISAS_QUE_ELA_GOSTA_DE_FAZER = [
   "Conversar",
   "Saber da minha vida",
   "fofocar",
+];
+
+const DECORACOES_FLUTUANTES = [
+  { tipo: "heart", left: 8, top: 9, size: 18, delay: 0, duration: 9 },
+  { tipo: "spark", left: 85, top: 8, size: 16, delay: 1.3, duration: 8 },
+  { tipo: "heart", left: 92, top: 23, size: 13, delay: 2.2, duration: 10 },
+  { tipo: "spark", left: 13, top: 31, size: 14, delay: 0.8, duration: 7 },
+  { tipo: "heart", left: 5, top: 54, size: 15, delay: 3.1, duration: 11 },
+  { tipo: "spark", left: 88, top: 57, size: 18, delay: 2.6, duration: 9 },
+  { tipo: "heart", left: 17, top: 76, size: 12, delay: 1.7, duration: 8 },
+  { tipo: "spark", left: 77, top: 82, size: 15, delay: 3.8, duration: 10 },
 ];
 
 function calcularTempo() {
@@ -184,15 +196,17 @@ export default function PagePrincipal() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center px-4 py-10 bg-[#09030a]"
+      className="relative min-h-screen overflow-hidden flex items-center justify-center px-4 py-10 bg-[#09030a]"
       style={{
         backgroundImage:
           "radial-gradient(circle at top, rgba(244,114,182,0.18), transparent 28%), linear-gradient(180deg, #23103b 0%, #0b0210 70%, #020203 100%)",
       }}
     >
-      <div className="w-full max-w-3xl rounded-[2rem] border border-white/10 bg-white/5 p-6 sm:p-10 shadow-[0_30px_90px_rgba(0,0,0,0.4)] backdrop-blur-xl">
+      <FloatingDecor />
+
+      <div className="relative z-10 w-full max-w-3xl rounded-[2rem] border border-white/10 bg-white/5 p-6 sm:p-10 shadow-[0_30px_90px_rgba(0,0,0,0.4)] backdrop-blur-xl">
         <div className="flex flex-col items-center justify-center py-12">
-          <div className="mb-8 animate-pulse">
+          <div className="main-heart mb-8 animate-pulse">
             <Heart className="w-28 h-28 text-pink-400 fill-pink-400 drop-shadow-[0_0_15px_rgba(244,114,182,0.8)]" />
           </div>
 
@@ -426,7 +440,7 @@ export default function PagePrincipal() {
                 <div className="flex items-center justify-center gap-2 text-pink-400 font-bold mb-5">
                   <Heart className="w-4 h-4 fill-pink-400" />
                   <h2 className="text-center text-white font-serif text-3xl">
-                    Coisas que ela gosta de fazer
+                    O que você mais gosta de fazer
                   </h2>
                   <Heart className="w-4 h-4 fill-pink-400" />
                 </div>
@@ -551,6 +565,37 @@ export default function PagePrincipal() {
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+function FloatingDecor() {
+  return (
+    <div className="pointer-events-none absolute inset-0 z-0">
+      <div className="absolute inset-x-0 top-0 h-64 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_62%)]" />
+
+      {DECORACOES_FLUTUANTES.map((decoracao, indice) => {
+        const Icone = decoracao.tipo === "heart" ? Heart : Sparkles;
+
+        return (
+          <Icone
+            key={`${decoracao.tipo}-${indice}`}
+            className={`floating-decor absolute ${
+              decoracao.tipo === "heart"
+                ? "fill-pink-300/35 text-pink-300/55"
+                : "text-rose-100/55"
+            }`}
+            style={{
+              left: `${decoracao.left}%`,
+              top: `${decoracao.top}%`,
+              width: `${decoracao.size}px`,
+              height: `${decoracao.size}px`,
+              animationDelay: `${decoracao.delay}s`,
+              animationDuration: `${decoracao.duration}s`,
+            }}
+          />
+        );
+      })}
     </div>
   );
 }
