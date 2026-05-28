@@ -14,6 +14,7 @@ import ecaa from "../assets/ecaa.jpeg";
 import fofoo from "../assets/fofoo.png";
 import dead1 from "../assets/deadburguer1.png";
 import dead2 from "../assets/deadburguer2.png";
+import diaNaoTaoBom from "../assets/diaNaoTaoBom.png";
 
 const START_DATE = new Date("2025-11-07T00:00:00");
 const SPOTIFY_TRACK_ID = "3eBjtEPgx1Z2O5ILHdEoJ7";
@@ -39,6 +40,11 @@ const FOTOS_INICIAIS = [
     src: dead2,
     legenda: "🤡😜",
   },
+  {
+    src: diaNaoTaoBom,
+    legenda: "Nunca mais vou te deixar sozinha, desculpa por ter brigaado com vc",
+  },
+  
 ];
 
 const GOSTOS_DELA = [
