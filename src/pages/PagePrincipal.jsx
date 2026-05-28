@@ -49,10 +49,16 @@ const FOTOS_INICIAIS = [
 
 const GOSTOS_DELA = [
   "O seu soriso",
+  "Seu lado tarada",
+  "Seu lado toxica",
+  "Você querer saber da minha vida",
+  "Seu ciúmes",
   "Sua carinha de brava",
   "Quando você acaba de acordar",
   "O seu cabelo bagunçado",
   "Seu pescoço 😏",
+  "Seus peitos 🤱",
+  "Sua bunda 🍑",
 ];
 
 const COISAS_QUE_ELA_GOSTA_DE_FAZER = [
@@ -135,6 +141,8 @@ export default function PagePrincipal() {
   const [fotoAtual, setFotoAtual] = useState(0);
   const [secaoLiberada, setSecaoLiberada] = useState(1);
   const [coracoesSoltos, setCoracoesSoltos] = useState([]);
+  const [gostosRevelados, setGostosRevelados] = useState(1);
+  const [fazeresRevelados, setFazeresRevelados] = useState(1);
 
   const musicaRef = useRef(null);
   const textoRef = useRef(null);
@@ -198,6 +206,16 @@ export default function PagePrincipal() {
         block: "start",
       });
     }, 220);
+  }
+
+  function revelarProximoGosto() {
+    setGostosRevelados((atual) => Math.min(atual + 1, GOSTOS_DELA.length));
+  }
+
+  function revelarProximoFazer() {
+    setFazeresRevelados((atual) =>
+      Math.min(atual + 1, COISAS_QUE_ELA_GOSTA_DE_FAZER.length),
+    );
   }
 
   return (
@@ -392,7 +410,8 @@ export default function PagePrincipal() {
             <>
               <section
                 ref={gostosRef}
-                className="w-full max-w-sm rounded-3xl px-6 py-8 mb-12 reveal-section"
+                onClick={revelarProximoGosto}
+                className="w-full max-w-sm cursor-pointer rounded-3xl px-6 py-8 mb-12 reveal-section"
                 style={{
                   background: "rgba(255,255,255,0.06)",
                   border: "1px solid rgba(255,100,150,0.2)",
@@ -408,10 +427,10 @@ export default function PagePrincipal() {
                 </div>
 
                 <ol className="space-y-3">
-                  {GOSTOS_DELA.map((gosto, indice) => (
+                  {GOSTOS_DELA.slice(0, gostosRevelados).map((gosto, indice) => (
                     <li
-                      key={gosto}
-                      className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-pink-100"
+                      key={`${gosto}-${indice}`}
+                      className="list-item-reveal flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-pink-100"
                     >
                       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pink-500/20 text-sm font-bold text-pink-300">
                         {indice + 1}
@@ -422,7 +441,7 @@ export default function PagePrincipal() {
                 </ol>
               </section>
 
-              {secaoLiberada < 5 && (
+              {secaoLiberada < 5 && gostosRevelados === GOSTOS_DELA.length && (
                 <HeartGate
                   coracoesSoltos={coracoesSoltos}
                   label="O que ela faz"
@@ -436,7 +455,8 @@ export default function PagePrincipal() {
             <>
               <section
                 ref={fazeresRef}
-                className="w-full max-w-sm rounded-3xl px-6 py-8 mb-12 reveal-section"
+                onClick={revelarProximoFazer}
+                className="w-full max-w-sm cursor-pointer rounded-3xl px-6 py-8 mb-12 reveal-section"
                 style={{
                   background: "rgba(255,255,255,0.06)",
                   border: "1px solid rgba(255,100,150,0.2)",
@@ -452,10 +472,10 @@ export default function PagePrincipal() {
                 </div>
 
                 <ol className="space-y-3">
-                  {COISAS_QUE_ELA_GOSTA_DE_FAZER.map((coisa, indice) => (
+                  {COISAS_QUE_ELA_GOSTA_DE_FAZER.slice(0, fazeresRevelados).map((coisa, indice) => (
                     <li
-                      key={coisa}
-                      className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-pink-100"
+                      key={`${coisa}-${indice}`}
+                      className="list-item-reveal flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-pink-100"
                     >
                       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-pink-500/20 text-sm font-bold text-pink-300">
                         {indice + 1}
@@ -466,7 +486,8 @@ export default function PagePrincipal() {
                 </ol>
               </section>
 
-              {secaoLiberada < 6 && (
+              {secaoLiberada < 6 &&
+                fazeresRevelados === COISAS_QUE_ELA_GOSTA_DE_FAZER.length && (
                 <HeartGate
                   coracoesSoltos={coracoesSoltos}
                   label="Abrir momentos"
