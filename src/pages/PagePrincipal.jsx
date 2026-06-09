@@ -15,6 +15,9 @@ import fofoo from "../assets/fofoo.png";
 import dead1 from "../assets/deadburguer1.png";
 import dead2 from "../assets/deadburguer2.png";
 import diaNaoTaoBom from "../assets/diaNaoTaoBom.png";
+import shopping from "../assets/shopping.png";
+import ibira1 from "../assets/ibira1.png";
+import ibira2 from "../assets/ibira2.png";
 
 const START_DATE = new Date("2025-11-07T00:00:00");
 const SPOTIFY_TRACK_ID = "3eBjtEPgx1Z2O5ILHdEoJ7";
@@ -44,7 +47,18 @@ const FOTOS_INICIAIS = [
     src: diaNaoTaoBom,
     legenda: "Nunca mais vou te deixar sozinha, desculpa por ter brigaado com vc",
   },
-  
+  {
+    src: shopping,
+    legenda: "Filme do krl kkkk",
+  },
+  {
+    src: ibira1,
+    legenda: "ibirapuera",
+  },
+  {
+    src: ibira2,
+    legenda: "Ce é lindaa mulheeer",
+  },
 ];
 
 const GOSTOS_DELA = [
