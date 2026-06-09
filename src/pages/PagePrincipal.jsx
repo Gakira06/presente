@@ -346,9 +346,6 @@ export default function PagePrincipal() {
                     <h2 className="text-center text-white font-bold font-serif text-2xl mb-2">
                       Nossa Música
                     </h2>
-                    <p className="text-center text-gray-400 text-sm mb-6">
-                      A trilha sonora do nosso amor
-                    </p>
                     <button
                       onClick={revelarMusica}
                       disabled={musicaEstado === "revelando"}
