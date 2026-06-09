@@ -402,8 +402,8 @@ export default function PagePrincipal() {
               >
                 <p className="text-center text-pink-100/90 italic leading-relaxed text-2xl">
                   Eu adoro seu jeitinho de maluca, seu lado toxico, quando voce fica toda fofa, quando voce fica toda grudenta, adoro quando voce fica com ciúmes,
-                   adoro ser idiota e te irritar, e como voce nao
-                  percebeu ate agora, adoro ficar agarrado com vc, E me desculpa por todas as vezes que ja te chatei, e mesmo você não gostando das minhas desculpas vou continuar pedindo porque isso é meu jeito de mostrar que me importo com você.<br/>Eu te amo❤️
+                   adoro ser idiota e te irritar, adoro que você se esforça pela coisas que você quer, e como voce nao
+                  percebeu ate agora, adoro ficar agarrado com vc, E me desculpa por todas as vezes que ja te chatei, e mesmo você não gostando das minhas desculpas vou continuar pedindo porque isso é meu jeito de mostrar que me importo com você.<br/>Eu quero ser a pessoa que você mais confia, quero ser seu melhor amigo, quero ser o primeiro a saber dos seus problemas, quero poder te ajudar, quero ser o lugar onde você se acalma e esquece dos seus problemas<br/>Eu te amo❤️
                 </p>
               </div>
 
