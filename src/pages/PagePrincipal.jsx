@@ -18,6 +18,7 @@ import diaNaoTaoBom from "../assets/diaNaoTaoBom.png";
 import shopping from "../assets/shopping.png";
 import ibira1 from "../assets/ibira1.png";
 import ibira2 from "../assets/ibira2.png";
+import mulherLavando from "../assets/mulherLavando.mp4";
 
 const START_DATE = new Date("2025-11-07T00:00:00");
 const SPOTIFY_TRACK_ID = "3eBjtEPgx1Z2O5ILHdEoJ7";
@@ -58,6 +59,11 @@ const FOTOS_INICIAIS = [
   {
     src: ibira2,
     legenda: "Ce é lindaa mulheeer",
+  },
+  {
+    src: mulherLavando,
+    legenda: "Mulher lavando",
+    tipo: "video",
   },
 ];
 
@@ -196,6 +202,7 @@ export default function PagePrincipal() {
     const novasFotos = arquivos.map((arquivo) => ({
       src: URL.createObjectURL(arquivo),
       legenda: arquivo.name.replace(/\.[^/.]+$/, ""),
+      tipo: "imagem",
     }));
 
     setFotos((anteriores) => [...anteriores, ...novasFotos]);
@@ -545,11 +552,20 @@ export default function PagePrincipal() {
                 }}
               >
                 <div className="relative rounded-2xl overflow-hidden bg-black/30 h-[360px]">
-                  <img
-                    src={fotos[fotoAtual].src}
-                    alt={fotos[fotoAtual].legenda}
-                    className="w-full h-full object-cover"
-                  />
+                  {fotos[fotoAtual].tipo === "video" ? (
+                    <video
+                      src={fotos[fotoAtual].src}
+                      className="w-full h-full object-cover"
+                      controls
+                      playsInline
+                    />
+                  ) : (
+                    <img
+                      src={fotos[fotoAtual].src}
+                      alt={fotos[fotoAtual].legenda}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
 
                   <button
                     onClick={fotoAnterior}
@@ -590,11 +606,25 @@ export default function PagePrincipal() {
                       }}
                       aria-label={`Abrir foto ${indice + 1}`}
                     >
-                      <img
-                        src={foto.src}
-                        alt={foto.legenda}
-                        className="w-20 h-20 object-cover"
-                      />
+                      {foto.tipo === "video" ? (
+                        <span className="relative block w-20 h-20 bg-black/50">
+                          <video
+                            src={foto.src}
+                            className="w-full h-full object-cover"
+                            muted
+                            playsInline
+                          />
+                          <span className="absolute inset-0 flex items-center justify-center bg-black/25 text-white">
+                            <Play className="w-5 h-5 fill-current" />
+                          </span>
+                        </span>
+                      ) : (
+                        <img
+                          src={foto.src}
+                          alt={foto.legenda}
+                          className="w-20 h-20 object-cover"
+                        />
+                      )}
                     </button>
                   ))}
                 </div>
