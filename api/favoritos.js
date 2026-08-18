@@ -9,11 +9,11 @@ if (!process.env.BLOB_READ_WRITE_TOKEN) {
   }
 }
 
-const MANIFEST_PATH = "fotos/manifest.json";
+const FAVORITOS_PATH = "fotos/favoritos.json";
 const token = process.env.BLOB_READ_WRITE_TOKEN;
 
-async function lerManifesto() {
-  const { blobs } = await list({ prefix: MANIFEST_PATH, token });
+async function lerFavoritos() {
+  const { blobs } = await list({ prefix: FAVORITOS_PATH, token });
   if (!blobs.length) return [];
 
   const resposta = await fetch(blobs[0].url, { cache: "no-store" });
@@ -24,8 +24,8 @@ async function lerManifesto() {
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    const fotos = await lerManifesto();
-    return res.status(200).json(fotos);
+    const favoritos = await lerFavoritos();
+    return res.status(200).json(favoritos);
   }
 
   if (req.method === "POST") {
@@ -33,20 +33,20 @@ export default async function handler(req, res) {
       return res.status(401).json({ erro: "Não autorizado" });
     }
 
-    const { url, legenda, tipo } = req.body || {};
-    if (!url) {
-      return res.status(400).json({ erro: "url é obrigatória" });
+    const { id } = req.body || {};
+    if (!id) {
+      return res.status(400).json({ erro: "id é obrigatório" });
     }
 
-    const fotos = await lerManifesto();
-    fotos.push({
-      url,
-      legenda: typeof legenda === "string" ? legenda.slice(0, 200) : "",
-      tipo: tipo === "video" ? "video" : "imagem",
-      criadoEm: new Date().toISOString(),
-    });
+    const favoritos = await lerFavoritos();
+    const indice = favoritos.indexOf(id);
+    if (indice === -1) {
+      favoritos.push(id);
+    } else {
+      favoritos.splice(indice, 1);
+    }
 
-    await put(MANIFEST_PATH, JSON.stringify(fotos), {
+    await put(FAVORITOS_PATH, JSON.stringify(favoritos), {
       access: "public",
       addRandomSuffix: false,
       allowOverwrite: true,
@@ -54,7 +54,7 @@ export default async function handler(req, res) {
       token,
     });
 
-    return res.status(200).json(fotos);
+    return res.status(200).json(favoritos);
   }
 
   res.setHeader("Allow", "GET, POST");

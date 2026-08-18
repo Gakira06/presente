@@ -43,3 +43,26 @@ export async function enviarFoto(arquivo) {
 
   return respostaApi.json();
 }
+
+export async function buscarFavoritos() {
+  const resposta = await fetch("/api/favoritos");
+  if (!resposta.ok) return [];
+  return resposta.json();
+}
+
+export async function alternarFavorito(id) {
+  const resposta = await fetch("/api/favoritos", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-upload-secret": UPLOAD_SECRET || "",
+    },
+    body: JSON.stringify({ id }),
+  });
+
+  if (!resposta.ok) {
+    throw new Error("Falha ao favoritar");
+  }
+
+  return resposta.json();
+}
