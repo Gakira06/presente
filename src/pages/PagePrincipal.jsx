@@ -19,6 +19,15 @@ import shopping from "../assets/shopping.png";
 import ibira1 from "../assets/ibira1.png";
 import ibira2 from "../assets/ibira2.png";
 import mulherLavando from "../assets/mulherLavando.mp4";
+import { buscarFotos, enviarFoto } from "../lib/fotos";
+
+function normalizarFotosServidor(fotosServidor) {
+  return fotosServidor.map((foto) => ({
+    src: foto.url,
+    legenda: foto.legenda,
+    tipo: foto.tipo,
+  }));
+}
 
 const START_DATE = new Date("2025-11-07T00:00:00");
 const SPOTIFY_TRACK_ID = "3eBjtEPgx1Z2O5ILHdEoJ7";
@@ -159,6 +168,7 @@ export default function PagePrincipal() {
   const [musicaEstado, setMusicaEstado] = useState("escondida");
   const [fotos, setFotos] = useState(FOTOS_INICIAIS);
   const [fotoAtual, setFotoAtual] = useState(0);
+  const [enviandoFotos, setEnviandoFotos] = useState(false);
   const [secaoLiberada, setSecaoLiberada] = useState(1);
   const [coracoesSoltos, setCoracoesSoltos] = useState([]);
   const [gostosRevelados, setGostosRevelados] = useState(1);
@@ -178,6 +188,16 @@ export default function PagePrincipal() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    buscarFotos()
+      .then((fotosServidor) => {
+        if (fotosServidor.length) {
+          setFotos([...FOTOS_INICIAIS, ...normalizarFotosServidor(fotosServidor)]);
+        }
+      })
+      .catch((erro) => console.error("Não foi possível carregar as fotos", erro));
+  }, []);
+
   function revelarMusica() {
     setMusicaEstado("revelando");
     setTimeout(() => setMusicaEstado("revelada"), 2000);
@@ -195,18 +215,24 @@ export default function PagePrincipal() {
     setFotoAtual(indice);
   }
 
-  function adicionarFotos(evento) {
+  async function adicionarFotos(evento) {
     const arquivos = Array.from(evento.target.files || []);
+    evento.target.value = "";
     if (!arquivos.length) return;
 
-    const novasFotos = arquivos.map((arquivo) => ({
-      src: URL.createObjectURL(arquivo),
-      legenda: arquivo.name.replace(/\.[^/.]+$/, ""),
-      tipo: "imagem",
-    }));
-
-    setFotos((anteriores) => [...anteriores, ...novasFotos]);
-    evento.target.value = "";
+    setEnviandoFotos(true);
+    try {
+      for (const arquivo of arquivos) {
+        await enviarFoto(arquivo);
+      }
+      const fotosServidor = await buscarFotos();
+      setFotos([...FOTOS_INICIAIS, ...normalizarFotosServidor(fotosServidor)]);
+    } catch (erro) {
+      console.error("Não foi possível enviar a foto", erro);
+      alert("Não foi possível enviar a foto. Tente novamente.");
+    } finally {
+      setEnviandoFotos(false);
+    }
   }
 
   function liberarProximaSecao(proximaSecao, proximoElemento) {
@@ -525,21 +551,28 @@ export default function PagePrincipal() {
               </h2>
 
               <label
-                className="w-full mb-4 rounded-2xl px-4 py-3 flex items-center justify-center gap-2 cursor-pointer"
+                className={`w-full mb-4 rounded-2xl px-4 py-3 flex items-center justify-center gap-2 ${
+                  enviandoFotos ? "cursor-wait opacity-70" : "cursor-pointer"
+                }`}
                 style={{
                   background: "rgba(255,255,255,0.07)",
                   border: "1px solid rgba(255,100,150,0.25)",
                 }}
               >
-                <Images className="w-4 h-4 text-pink-300" />
+                {enviandoFotos ? (
+                  <span className="w-4 h-4 border-2 border-pink-400 border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <Images className="w-4 h-4 text-pink-300" />
+                )}
                 <span className="text-pink-200 text-sm">
-                  Adicionar fotos sem limite
+                  {enviandoFotos ? "Enviando..." : "Adicionar fotos sem limite"}
                 </span>
                 <input
                   type="file"
-                  accept="image/*"
+                  accept="image/*,video/*"
                   multiple
                   onChange={adicionarFotos}
+                  disabled={enviandoFotos}
                   className="hidden"
                 />
               </label>
