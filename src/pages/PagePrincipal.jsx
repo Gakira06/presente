@@ -703,7 +703,8 @@ export default function PagePrincipal() {
                 <p className="text-center text-pink-100/90 italic leading-relaxed text-2xl">
                   Sarah, eu adoro seu jeitinho de maluca, seu lado toxico, quando voce fica toda fofa, quando voce fica toda grudenta, adoro quando voce fica com ciúmes,
                    adoro ser idiota e te irritar, adoro que você se esforça pela coisas que você quer, e como voce nao
-                  percebeu ate agora, adoro ficar agarrado com vc, E me desculpa por todas as vezes que ja te chatei, e mesmo você não gostando das minhas desculpas vou continuar pedindo porque isso é meu jeito de mostrar que me importo com você.<br/>Eu quero ser a pessoa que você mais confia, quero ser seu melhor amigo, quero ser o primeiro a saber dos seus problemas, quero poder te ajudar, quero ser o lugar onde você se acalma e esquece dos seus problemas.<br/>Prometo cuidar do que a gente construiu com todo cuidado do mundo.<br/>Eu te amo❤️
+                  percebeu ate agora, adoro ficar agarrado com vc, E me desculpa por todas as vezes que ja te chatei, e mesmo você não gostando das minhas desculpas vou continuar pedindo porque isso é meu jeito de mostrar que me importo com você.<br/>Eu quero ser a pessoa que você mais confia, quero ser seu melhor amigo, quero ser o primeiro a saber dos seus problemas, quero poder te ajudar, quero ser o lugar onde você se acalma e esquece dos seus problemas.<br/>Prometo cuidar do que a gente construiu com todo cuidado do mundo.<br/>
+                  Amor e me desculpa por ter sido egoista e ter chateado e estragado uma das surpresas, nem sei se vc vai gostar mais das outras agora, mas queria que esse final de semana fosse o melhor final de semana nosso. Eu espero que voce me de mais uma chance e tente entender depois de domingo<br/>Eu te amo muito❤️
                 </p>
               </div>
 
