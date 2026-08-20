@@ -43,8 +43,6 @@ import buque2 from "../assets/buques/2.png";
 import buque3 from "../assets/buques/3.png";
 import buque4 from "../assets/buques/4.png";
 import buque5 from "../assets/buques/5.png";
-import buque6 from "../assets/buques/6.png";
-import buque7 from "../assets/buques/7.png";
 import ele1 from "../assets/ele/1.png";
 import ele2 from "../assets/ele/2.png";
 import ele3 from "../assets/ele/3.png";
@@ -202,8 +200,6 @@ const FOTOS_BUQUE = comIds("buque", [
   { src: buque3, legenda: "" },
   { src: buque4, legenda: "" },
   { src: buque5, legenda: "" },
-  { src: buque6, legenda: "" },
-  { src: buque7, legenda: "" },
 ]);
 
 const PROMESSAS = [
@@ -506,7 +502,7 @@ export default function PagePrincipal() {
 
           <span className="inline-flex items-center gap-2 rounded-full border border-pink-300/30 bg-pink-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-pink-200 mb-5">
             <Heart className="w-3 h-3 fill-pink-300 text-pink-300" />
-            Oficialmente minha namorada
+            Pro amor da minha vida
           </span>
 
           <h1 className="text-center text-white font-bold font-serif text-5xl mb-6">
@@ -552,14 +548,14 @@ export default function PagePrincipal() {
             {tempo.horas} : {tempo.minutos} : {tempo.segundos}
           </div>
 
-          <div className="flex items-center gap-2 text-pink-300 text-sm mb-8">
-            <span className="text-pink-400">✦</span>
+          <div className="flex items-center gap-2 text-pink-300 text-sm mb-8 justify-center text-center items-center">
+            <span className="text-pink-400 ">✦</span>
             <span>
               São{" "}
               <strong className="text-white text-base">
                 {totalDiasJuntos()}
               </strong>{" "}
-              dias sendo sua, com direito a brigas e tudo
+              dias sendo seu, com direito a brigas e amor,<br/> e eu espero que seja por muitos e muitos anos mais
             </span>
             <span className="text-pink-400">✦</span>
           </div>
@@ -707,7 +703,7 @@ export default function PagePrincipal() {
                 <p className="text-center text-pink-100/90 italic leading-relaxed text-2xl">
                   Sarah, eu adoro seu jeitinho de maluca, seu lado toxico, quando voce fica toda fofa, quando voce fica toda grudenta, adoro quando voce fica com ciúmes,
                    adoro ser idiota e te irritar, adoro que você se esforça pela coisas que você quer, e como voce nao
-                  percebeu ate agora, adoro ficar agarrado com vc, E me desculpa por todas as vezes que ja te chatei, e mesmo você não gostando das minhas desculpas vou continuar pedindo porque isso é meu jeito de mostrar que me importo com você.<br/>Eu quero ser a pessoa que você mais confia, quero ser seu melhor amigo, quero ser o primeiro a saber dos seus problemas, quero poder te ajudar, quero ser o lugar onde você se acalma e esquece dos seus problemas.<br/>E agora que você aceitou ser minha namorada, eu só posso agradecer por ter dito sim. Prometo cuidar do que a gente construiu com todo cuidado do mundo.<br/>Eu te amo❤️
+                  percebeu ate agora, adoro ficar agarrado com vc, E me desculpa por todas as vezes que ja te chatei, e mesmo você não gostando das minhas desculpas vou continuar pedindo porque isso é meu jeito de mostrar que me importo com você.<br/>Eu quero ser a pessoa que você mais confia, quero ser seu melhor amigo, quero ser o primeiro a saber dos seus problemas, quero poder te ajudar, quero ser o lugar onde você se acalma e esquece dos seus problemas.<br/>Prometo cuidar do que a gente construiu com todo cuidado do mundo.<br/>Eu te amo❤️
                 </p>
               </div>
 
